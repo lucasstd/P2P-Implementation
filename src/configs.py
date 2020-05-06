@@ -15,10 +15,12 @@ def config():
         # heartbeat timeout counter
         "HEARTBEAT_TIMEOUT": int(os.environ.get("HEARTBEAT_TIMEOUT")),
         # timeout to disconnect the client if it cannot reach a host
-        "TIMEOUT": int(os.environ.get("TIMEOUT")),
+        "CLIENT_TIMEOUT": int(os.environ.get("CLIENT_TIMEOUT")),
         # time in seconds to receive/send heartbeat
         "HEARTBEAT_TIME": int(os.environ.get("HEARTBEAT_TIME")),
         "BUFFERSIZE": int(os.environ.get("BUFFERSIZE")),  # buffer size to sockets
+        # need tolerance, timeout is the same as heartbeat time, always timeout
+        "HEARTBEAT_TOLERANCE": float(os.environ.get("HEARTBEAT_TOLERANCE")),
         # ---------- Service configurations ports -------------
         "SIGN_UP": int(os.environ.get("SIGN_UP")),
         "QUERY": int(os.environ.get("QUERY")),
