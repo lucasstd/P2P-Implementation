@@ -17,13 +17,13 @@ class Core:
         print("[-] Running server...")
         self.run_threads(threads)
 
-    def start_client(self, *args):
+    def start_client(self, args):
         print("[-] Configuring to start client...")
         threads = []
         server_ip, services = args.client[0], args.__dict__
         for service in services:
             if services[service] is True:
-                threads.append(client_threads_factory(service, server_ip))
+                threads.append(self.client_threads_factory(service, server_ip))
         print("[-] Running client...")
         self.run_threads(threads)
 

@@ -19,10 +19,7 @@ def service_undefined():
 
 def execute_static_func(func, **kwargs):
     mutex.acquire()
-    if kwargs:
-        result = func(kwargs)
-    else:
-        result = func()
+    result = func(kwargs) if kwargs else func()
     mutex.release()
     if result:
         return result
@@ -102,6 +99,7 @@ class P2P(Thread):
             try:
                 self.sock.bind(self.server_address)
                 while True:
+                    print('---')
                     service()
             except OSError:
                 print(f"Another process is already using port {self.server_address[1]}.")
@@ -125,7 +123,6 @@ class P2P(Thread):
                 conf["SEND"]: self.peer_send_file
             }.get(self.port, service_undefined)
 
-    # generic method which contains all necessary exceptions to execute client functions
     def execute_client_func(self, func, arg=None):
         try:
             self.sock.settimeout(conf["CLIENT_TIMEOUT"])
