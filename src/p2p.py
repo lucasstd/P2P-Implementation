@@ -99,7 +99,6 @@ class P2P(Thread):
             try:
                 self.sock.bind(self.server_address)
                 while True:
-                    print('---')
                     service()
             except OSError:
                 print(f"Another process is already using port {self.server_address[1]}.")
